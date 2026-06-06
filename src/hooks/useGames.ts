@@ -1,11 +1,18 @@
 import apiClient, { CanceledError } from "@/services/api-client";
 import { useEffect, useState } from "react";
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 // https://api.rawg.io/docs/#operation/games_list
 export interface Game {
   id: number;
   name: string;
   background_image: string;
+  parent_platforms: { platform: Platform }[];
 }
 
 interface FetchGamesResponse {
