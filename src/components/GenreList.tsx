@@ -2,11 +2,11 @@ import useGenres from "@/hooks/useGenres";
 import { HStack, Image, VStack, Text } from "@chakra-ui/react";
 
 const GenreList = () => {
-  const { genres, error, isLoading } = useGenres();
+  const { data, error, isLoading } = useGenres();
 
   return (
     <VStack align="left">
-      {genres.map((genre) => (
+      {data.map((genre) => (
         <HStack key={genre.id}>
           <Image
             src={genre.image_background}
