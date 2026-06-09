@@ -1,14 +1,20 @@
 import { Genre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/image-url";
-import { HStack, Image, Link } from "@chakra-ui/react";
+import { HStack, Image, Link, Text } from "@chakra-ui/react";
 
 interface Props {
   genre: Genre;
   size: string;
+  isSelected?: boolean;
   onSelectItem: (genre: Genre) => void;
 }
 
-const GenreItem = ({ genre, size, onSelectItem }: Props) => {
+const GenreItem = ({
+  genre,
+  size,
+  isSelected = false,
+  onSelectItem,
+}: Props) => {
   return (
     <Link
       href="#"
@@ -25,7 +31,7 @@ const GenreItem = ({ genre, size, onSelectItem }: Props) => {
           src={getCroppedImageUrl(genre.image_background)}
           alt={genre.slug}
         />
-        {genre.name}
+        <Text fontWeight={isSelected ? "bold" : "normal"}>{genre.name}</Text>
       </HStack>
     </Link>
   );

@@ -4,10 +4,11 @@ import GenreItem from "./GenreItem";
 import GenreItemSkeleton from "./GenreItemSkeleton";
 
 interface Props {
+  selectedGenre: Genre | null;
   onSelectGenre: (genre: Genre) => void;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   const skeletons = Array.from({ length: 20 }, (_, i) => i + 1);
   const sizes = {
@@ -34,6 +35,7 @@ const GenreList = ({ onSelectGenre }: Props) => {
           <GenreItem
             genre={genre}
             size={sizes.image}
+            isSelected={genre.id === selectedGenre?.id}
             onSelectItem={(genre) => {
               onSelectGenre(genre);
             }}
