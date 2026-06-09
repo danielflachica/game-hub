@@ -1,10 +1,10 @@
-import axios, { CanceledError } from "axios";
+import axios, { CanceledError, type AxiosRequestConfig } from "axios";
 
 export default axios.create({
   baseURL: import.meta.env.VITE_RAWG_API_URL,
   params: {
-    key: import.meta.env.VITE_RAWG_API_KEY
-  }
+    key: import.meta.env.VITE_RAWG_API_KEY,
+  },
 });
 
-export { CanceledError };
+export { CanceledError, type AxiosRequestConfig };
