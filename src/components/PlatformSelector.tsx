@@ -2,8 +2,14 @@ import { Button, Menu, Portal } from "@chakra-ui/react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { useState } from "react";
 import usePlatforms from "@/hooks/usePlatforms";
+import { PlatformParent } from "@/hooks/usePlatforms";
 
-const PlatformSelector = () => {
+interface Props {
+  selectedPlatform?: PlatformParent | null;
+  onSelectPlatform: (platform: PlatformParent) => void;
+}
+
+const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
   const [open, setOpen] = useState(false);
   const { data, error, isLoading } = usePlatforms();
 
@@ -18,7 +24,7 @@ const PlatformSelector = () => {
             size="sm"
             _focus={{ boxShadow: "none", outline: "none" }}
           >
-            Platforms
+            {selectedPlatform?.name || "Platforms"}
             {open ? <FaAngleUp /> : <FaAngleDown />}
           </Button>
         ) : (
@@ -35,7 +41,14 @@ const PlatformSelector = () => {
         <Menu.Positioner>
           <Menu.Content>
             {data.map((platform) => (
-              <Menu.Item key={platform.id} value={platform.slug}>
+              <Menu.Item
+                key={platform.id}
+                value={platform.slug}
+                onClick={() => {
+                  onSelectPlatform(platform);
+                }}
+                _hover={{ cursor: "pointer" }}
+              >
                 {platform.name}
               </Menu.Item>
             ))}

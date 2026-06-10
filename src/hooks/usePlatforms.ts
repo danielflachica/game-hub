@@ -1,13 +1,8 @@
 import useData from "./useData";
+import { Platform } from "./useGames";
 
 // https://api.rawg.io/api/platforms/lists/parents
-interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-interface PlatformParent {
+export interface PlatformParent {
   id: number;
   name: string;
   slug: string;
