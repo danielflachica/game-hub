@@ -6,9 +6,12 @@ import {
   FaLinux,
   FaAndroid,
   FaGlobe,
+  FaQuestionCircle,
 } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { BsNintendoSwitch } from "react-icons/bs";
+import { SiAtari, SiCommodore, SiSega, SiWeb3Dotjs } from "react-icons/si";
+import { IoGameControllerSharp } from "react-icons/io5";
 import { Platform } from "@/hooks/useGames";
 import { HStack, Icon } from "@chakra-ui/react";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -20,23 +23,32 @@ interface Props {
 
 const PlatformIconList = ({ platforms }: Props) => {
   const iconMap: { [key: string]: IconType } = {
-    // slug: playstation => icon: FaPlaystation
     pc: FaWindows,
     playstation: FaPlaystation,
-    xbox: FaXbox,
+    ios: MdPhoneIphone,
+    android: FaAndroid,
     mac: FaApple,
     linux: FaLinux,
-    android: FaAndroid,
-    web: FaGlobe,
-    ios: MdPhoneIphone,
+    xbox: FaXbox,
     nintendo: BsNintendoSwitch,
+    atari: SiAtari,
+    "commodore-amiga": SiCommodore,
+    sega: SiSega,
+    "3do": SiWeb3Dotjs,
+    "neo-geo": IoGameControllerSharp,
+    web: FaGlobe,
   };
 
   return (
     <HStack marginY={1}>
       {platforms.map((platform) => (
         <Tooltip key={platform.id} content={platform.name} showArrow>
-          <Icon as={iconMap[platform.slug]} color="gray.500" />
+          <Icon
+            as={
+              iconMap[platform.slug] ? iconMap[platform.slug] : FaQuestionCircle
+            }
+            color="gray.500"
+          />
         </Tooltip>
       ))}
     </HStack>

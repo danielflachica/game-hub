@@ -15,7 +15,8 @@ const GameHeading = ({ gameQuery }: Props) => {
       as="h1"
       fontSize={{ base: "2xl", md: "3xl", lg: "4xl", xl: "5xl" }}
       fontWeight="bold"
-      marginBottom={5}
+      marginTop={1}
+      marginBottom={{ base: 4, lg: 6, xl: 7 }}
     >
       {heading}
     </Heading>

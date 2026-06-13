@@ -30,7 +30,7 @@ function App() {
           base: "1fr",
           lg: "200px 1fr",
         }}
-        marginBottom={6}
+        marginBottom={{ base: 4, lg: 6 }}
       >
         <GridItem area="nav">
           <NavBar
