@@ -30,7 +30,7 @@ function App() {
           base: "1fr",
           lg: "200px 1fr",
         }}
-        marginBottom={4}
+        marginBottom={6}
       >
         <GridItem area="nav">
           <NavBar
@@ -48,7 +48,7 @@ function App() {
           />
         </GridItem>
         <GridItem area="main">
-          <Box paddingLeft={4} marginBottom={4}>
+          <Box paddingLeft={4} marginBottom={6}>
             <GameHeading gameQuery={gameQuery} />
             <HStack gap={4}>
               <PlatformSelector
