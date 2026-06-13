@@ -1,5 +1,5 @@
 import useGenres, { Genre } from "@/hooks/useGenres";
-import { List } from "@chakra-ui/react";
+import { Heading, List } from "@chakra-ui/react";
 import GenreItem from "./GenreItem";
 import GenreItemSkeleton from "./GenreItemSkeleton";
 
@@ -19,30 +19,39 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   if (error) return null;
 
   return (
-    <List.Root>
-      {isLoading &&
-        skeletons.map((skeleton) => (
+    <>
+      <Heading fontSize="2xl" marginBottom={2}>
+        Genres
+      </Heading>
+      <List.Root>
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <List.Item
+              key={skeleton}
+              paddingY={sizes.padding}
+              listStyleType="none"
+            >
+              <GenreItemSkeleton size={sizes.image} />
+            </List.Item>
+          ))}
+        {data.map((genre) => (
           <List.Item
-            key={skeleton}
+            key={genre.id}
             paddingY={sizes.padding}
             listStyleType="none"
           >
-            <GenreItemSkeleton size={sizes.image} />
+            <GenreItem
+              genre={genre}
+              size={sizes.image}
+              isSelected={genre.id === selectedGenre?.id}
+              onSelectItem={(genre) => {
+                onSelectGenre(genre);
+              }}
+            />
           </List.Item>
         ))}
-      {data.map((genre) => (
-        <List.Item key={genre.id} paddingY={sizes.padding} listStyleType="none">
-          <GenreItem
-            genre={genre}
-            size={sizes.image}
-            isSelected={genre.id === selectedGenre?.id}
-            onSelectItem={(genre) => {
-              onSelectGenre(genre);
-            }}
-          />
-        </List.Item>
-      ))}
-    </List.Root>
+      </List.Root>
+    </>
   );
 };
 

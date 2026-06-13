@@ -11,6 +11,7 @@ const ColorModeSwitch = () => {
         checked={colorMode === "dark"}
         colorPalette="cyan"
         onCheckedChange={toggleColorMode}
+        _hover={{ cursor: "pointer" }}
       >
         <Switch.HiddenInput />
         <Switch.Control />

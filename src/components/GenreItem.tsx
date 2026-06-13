@@ -28,6 +28,7 @@ const GenreItem = ({
         <Image
           boxSize={size}
           borderRadius={8}
+          objectFit="cover"
           src={getCroppedImageUrl(genre.image_background)}
           alt={genre.slug}
         />
