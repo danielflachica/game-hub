@@ -22,7 +22,8 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
           size="sm"
           _focus={{ boxShadow: "none", outline: "none" }}
         >
-          Order by: {currentSortOrder?.label || "Relevance"}
+          Order by:
+          <strong>{currentSortOrder?.label || "Relevance"}</strong>
           {open ? <FaAngleUp /> : <FaAngleDown />}
         </Button>
       </Menu.Trigger>
