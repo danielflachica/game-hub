@@ -1,6 +1,7 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import sortOrders from "@/data/sortOrders";
 
 interface Props {
   selectedSortOrder: string;
@@ -8,33 +9,7 @@ interface Props {
 }
 
 const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
-  const sortOptions = [
-    {
-      label: "Relevance",
-      value: "", // Default sort order
-    },
-    {
-      label: "Date added",
-      value: "-added", // DESC Order
-    },
-    {
-      label: "Name",
-      value: "name",
-    },
-    {
-      label: "Release date",
-      value: "-released",
-    },
-    {
-      label: "Popularity",
-      value: "-metacritic",
-    },
-    {
-      label: "Average rating",
-      value: "-rating",
-    },
-  ];
-  const currentSortOrder = sortOptions.find(
+  const currentSortOrder = sortOrders.find(
     (opt) => opt.value === selectedSortOrder
   );
   const [open, setOpen] = useState(false);
@@ -54,7 +29,7 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            {sortOptions.map((opt) => (
+            {sortOrders.map((opt) => (
               <Menu.Item
                 key={opt.value}
                 value={opt.value}
