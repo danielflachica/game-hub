@@ -1,32 +1,41 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
 
-const SortSelector = () => {
+interface Props {
+  selectedSortOrder: string;
+  onSelectSortOrder: (sortOrder: string) => void;
+}
+
+const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
   const sortOptions = [
     {
       label: "Relevance",
-      slug: "xxx",
+      value: "", // Default sort order
     },
     {
       label: "Date added",
-      slug: "added",
+      value: "-added", // DESC Order
     },
     {
       label: "Name",
-      slug: "name",
+      value: "name",
     },
     {
       label: "Release date",
-      slug: "released",
+      value: "-released",
     },
     {
       label: "Popularity",
-      slug: "rating",
+      value: "-metacritic",
     },
     {
       label: "Average rating",
-      slug: "metacritic",
+      value: "-rating",
     },
   ];
+  const currentSortOrder = sortOptions.find(
+    (opt) => opt.value === selectedSortOrder
+  );
+
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
@@ -35,7 +44,7 @@ const SortSelector = () => {
           size="sm"
           _focus={{ boxShadow: "none", outline: "none" }}
         >
-          Order by: Relevance
+          Order by: {currentSortOrder?.label || "Relevance"}
         </Button>
       </Menu.Trigger>
       <Portal>
@@ -43,9 +52,12 @@ const SortSelector = () => {
           <Menu.Content>
             {sortOptions.map((opt) => (
               <Menu.Item
-                key={opt.slug}
-                value={opt.slug}
+                key={opt.value}
+                value={opt.value}
                 _hover={{ cursor: "pointer" }}
+                onClick={() => {
+                  onSelectSortOrder(opt.value);
+                }}
               >
                 {opt.label}
               </Menu.Item>
