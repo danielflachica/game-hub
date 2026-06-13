@@ -1,5 +1,5 @@
-import useData from "./useData";
 import { Platform } from "./useGames";
+import platforms from "@/data/platforms";
 
 // https://api.rawg.io/api/platforms/lists/parents
 export interface PlatformParent {
@@ -9,6 +9,10 @@ export interface PlatformParent {
   platforms: Platform[];
 }
 
-const usePlatforms = () => useData<PlatformParent>("/platforms/lists/parents");
+const usePlatforms = () => ({
+  data: platforms,
+  isLoading: false,
+  error: null,
+});
 
 export default usePlatforms;
