@@ -1,4 +1,6 @@
 import { Button, Menu, Portal } from "@chakra-ui/react";
+import { useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 interface Props {
   selectedSortOrder: string;
@@ -35,9 +37,10 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
   const currentSortOrder = sortOptions.find(
     (opt) => opt.value === selectedSortOrder
   );
+  const [open, setOpen] = useState(false);
 
   return (
-    <Menu.Root>
+    <Menu.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
       <Menu.Trigger asChild>
         <Button
           variant="outline"
@@ -45,6 +48,7 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
           _focus={{ boxShadow: "none", outline: "none" }}
         >
           Order by: {currentSortOrder?.label || "Relevance"}
+          {open ? <FaAngleUp /> : <FaAngleDown />}
         </Button>
       </Menu.Trigger>
       <Portal>
