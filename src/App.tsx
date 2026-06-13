@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Grid, GridItem, HStack } from "@chakra-ui/react";
 import { Genre } from "./hooks/useGenres";
 import { PlatformParent } from "./hooks/usePlatforms";
@@ -18,6 +18,14 @@ export interface GameQuery {
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
+  useEffect(() => {
+    const parts = [gameQuery.platform?.name, gameQuery.genre?.name].filter(
+      Boolean
+    );
+    document.title =
+      parts.length > 0 ? `GameHub: ${parts.join(" ")} Games` : "GameHub";
+  }, [gameQuery]);
 
   return (
     <>
